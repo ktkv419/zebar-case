@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build-simple": "vite build",
+    "build": "vite build && cp ./dist/index.html /mnt/c/Users/$USER/.glzr/zebar/bar/index.html",
     "lint": "eslint .",
     "preview": "vite preview"
   },
