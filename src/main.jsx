@@ -1,24 +1,31 @@
 import { useState, useEffect } from 'react'
 import { createRoot } from 'react-dom/client'
 import { createProviderGroup } from 'zebar'
-import "./reset.css"
-import "./main.css"
+import './reset.css'
+import './main.css'
+import UpChecker from './components/UpChecker/UpChecker'
 
 const providers = createProviderGroup({
     network: { type: 'network' },
     glazewm: { type: 'glazewm' },
     cpu: { type: 'cpu' },
     keyboard: { type: 'keyboard' },
-    date: { type: 'date', formatting: 'EEE d MMM t' },
+    date: { type: 'date', formatting: 'EEE d MMM HH:MM' },
+    //date: { type: 'date', formatting: 'EEE d MMM t' },
     battery: { type: 'battery' },
     memory: { type: 'memory' },
 })
 
 createRoot(document.getElementById('root')).render(<App />)
 
-
 function App() {
     const [output, setOutput] = useState(providers.outputMap)
+    const checkUpTime = [
+        {
+            url: 'https://ktkv.dev',
+            name: 'wntrmt',
+        },
+    ]
 
     useEffect(() => {
         providers.onOutput(() => setOutput(providers.outputMap))
@@ -114,6 +121,9 @@ function App() {
                         {output.network.defaultGateway?.ssid}
                     </div>
                 )}
+
+                {checkUpTime.length > 0 &&
+                    checkUpTime.map((machine) => <UpChecker {...machine} />)}
 
                 {output.memory && (
                     <div className="memory">

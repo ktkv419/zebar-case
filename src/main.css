@@ -4,111 +4,162 @@
  */
 @import 'https://www.nerdfonts.com/assets/css/webfont.css';
 
+:root {
+    --color-accent: #01799d;
+    --color-background: #011d29;
+    --color-text: rgb(255 255 255 / 90%);
+    --color-accent-bg: #0e506b;
+    --color-error: #ff757f;
+}
+
 i {
-  color: rgb(115 130 175 / 95%);
-  margin-right: 7px;
+    color: var(--color-accent);
+    margin-right: 7px;
 }
 
 body {
-  color: rgb(255 255 255 / 90%);
-  font-family: Iosevka Nerd Font;
-  font-size: 12px;
-  overflow: hidden;
+    color: rgb(255 255 255 / 90%);
+    font-family:
+        Iosevka Nerd Font,
+        monospace;
+    font-size: 12px;
+    overflow: hidden;
 }
 
 html,
 body,
 #root {
-  height: 100%;
+    height: 100%;
 }
 
 #root {
-  background: #00000000;
+    background: #00000000;
 }
 
 .app {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  align-items: center;
-  height: 100%;
-  padding: 0 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: end;
+    height: 100%;
+    padding: 0 5px;
 }
 
 .left,
 .center,
 .right {
-  display: flex;
-  align-items: center;
+    display: flex;
+    height: 25px;
+    padding: 0 5px;
+    align-items: center;
+    background-color: var(--color-background);
+    border-radius: 6px;
+}
+
+.left {
+    justify-self: start;
 }
 
 .center {
-  justify-self: center;
+    justify-self: center;
 }
 
 .right {
-  justify-self: end;
+    justify-self: end;
 }
 
 .logo,
 .binding-mode,
-.tiling-direction,
 .network,
 .memory,
 .cpu,
+.up-checker,
 .battery {
-  margin-right: 20px;
+    margin-right: 20px;
+    display: flex;
+}
+
+.tiling-direction {
+    margin-right: 10px;
+}
+
+.network {
+    display: none;
 }
 
 .workspaces {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .workspace {
-  background: rgb(255 255 255 / 5%);
-  margin-right: 4px;
-  padding: 4px 8px;
-  color: rgb(255 255 255 / 90%);
-  border: none;
-  border-radius: 2px;
-  cursor: pointer;
+    /* margin-right: 4px; */
+    padding: 4px 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text);
 
-  &.displayed {
-    background: rgb(255 255 255 / 15%);
-  }
+    &.displayed {
+        color: var(--color-text);
+        background-color: var(--color-accent-bg);
+        border-radius: 4px;
+        /*color: rgb(255 255 255 / 90%);*/
+    }
 
-  &.focused,
-  &:hover {
-    background: rgb(75 115 255 / 50%);
-  }
+    &.focused,
+    &:hover {
+        /*olor: rgb(255 255 255 / 90%);*/
+    }
 }
 
 .binding-mode,
 .tiling-direction {
-  background: rgb(255 255 255 / 15%);
-  color: rgb(255 255 255 / 90%);
-  border-radius: 2px;
-  line-height: 1;
-  padding: 4px 8px;
-  border: 0;
-  cursor: pointer;
+    background: #00000000;
+    color: var(--color-accent);
+    border-radius: 2px;
+    line-height: 1;
+    padding: 4px 8px;
+    border: 0;
+    cursor: pointer;
 }
 
 .binding-mode {
-  margin-right: 4px;
+    margin-right: 4px;
 }
 
 .cpu .high-usage {
-  color: #900029;
+    color: #900029;
 }
 
 .battery {
-  position: relative;
+    position: relative;
 }
 
 .battery .charging-icon {
-  position: absolute;
-  font-size: 7px;
-  left: -8px;
-  top: 3px;
+    position: absolute;
+    font-size: 7px;
+    left: -8px;
+    top: 3px;
+}
+
+.up-checker {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+}
+
+.up-checker__label {
+    height: 6px;
+    width: 6px;
+    border-radius: 100%;
+    background-color: var(--color-background);
+}
+
+.up-checker__label--offline {
+    background-color: var(--color-error);
+}
+
+.up-checker__label--online {
+    background-color: var(--color-accent);
 }
