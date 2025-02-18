@@ -2,13 +2,12 @@
  * Import the Nerdfonts icon font.
  * Ref https://www.nerdfonts.com/cheat-sheet for a cheatsheet of available Nerdfonts icons.
  */
-@import 'https://www.nerdfonts.com/assets/css/webfont.css';
+@import "https://www.nerdfonts.com/assets/css/webfont.css";
 
 :root {
-    --color-accent: #01799d;
-    --color-background: #011d29;
-    --color-text: rgb(255 255 255 / 90%);
-    --color-accent-bg: #0e506b;
+    --color-accent: #3d59a1;
+    --color-background: #1a1b26;
+    --color-text: #c0caf5;
     --color-error: #ff757f;
 }
 
@@ -19,9 +18,7 @@ i {
 
 body {
     color: rgb(255 255 255 / 90%);
-    font-family:
-        Iosevka Nerd Font,
-        monospace;
+    font-family: Iosevka Nerd Font, monospace;
     font-size: 12px;
     overflow: hidden;
 }
@@ -98,18 +95,27 @@ body,
     border: none;
     cursor: pointer;
     color: var(--color-text);
+    z-index: 9999;
 
     &.displayed {
         color: var(--color-text);
-        background-color: var(--color-accent-bg);
         border-radius: 4px;
         /*color: rgb(255 255 255 / 90%);*/
     }
 
-    &.focused,
+    /*&.focused,*/
     &:hover {
         /*olor: rgb(255 255 255 / 90%);*/
+        color: var(--color-accent);
     }
+}
+
+.workspace__selector {
+    position: absolute;
+    transition: all 0.3s;
+    transform: translateX(50%);
+    background-color: var(--color-accent);
+    border-radius: 4px;
 }
 
 .binding-mode,

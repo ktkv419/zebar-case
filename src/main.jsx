@@ -4,6 +4,7 @@ import { createProviderGroup } from 'zebar'
 import './reset.css'
 import './main.css'
 import UpChecker from './components/UpChecker/UpChecker'
+import Workspaces from './components/Workspaces/Workspaces'
 
 const providers = createProviderGroup({
     network: { type: 'network' },
@@ -70,20 +71,7 @@ function App() {
         <div className="app">
             <div className="left">
                 {output.glazewm && (
-                    <div className="workspaces">
-                        {output.glazewm.currentWorkspaces.map((workspace) => (
-                            <button
-                                className={`workspace ${workspace.hasFocus && 'focused'} ${workspace.isDisplayed && 'displayed'}`}
-                                onClick={() =>
-                                    output.glazewm.runCommand(
-                                        `focus --workspace ${workspace.name}`,
-                                    )
-                                }
-                                key={workspace.name}>
-                                {workspace.displayName ?? workspace.name}
-                            </button>
-                        ))}
-                    </div>
+                    <Workspaces {...output.glazewm} />
                 )}
             </div>
 
