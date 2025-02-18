@@ -16,8 +16,9 @@ i {
     margin-right: 7px;
 }
 
-body {
-    color: rgb(255 255 255 / 90%);
+body,
+button {
+    color: var(--color-text);
     font-family: Iosevka Nerd Font, monospace;
     font-size: 12px;
     overflow: hidden;
@@ -62,6 +63,7 @@ body,
 
 .right {
     justify-self: end;
+    grid-column: 3/4;
 }
 
 .logo,
@@ -71,16 +73,16 @@ body,
 .cpu,
 .up-checker,
 .battery {
-    margin-right: 20px;
+    margin-right: 15px;
     display: flex;
+}
+
+.center.title {
+    text-overflow: ellipsis;
 }
 
 .tiling-direction {
     margin-right: 10px;
-}
-
-.network {
-    display: none;
 }
 
 .workspaces {
@@ -88,26 +90,24 @@ body,
     align-items: center;
 }
 
-.workspace {
-    /* margin-right: 4px; */
+.workspace,
+.media__btn {
     padding: 4px 6px;
     background: none;
     border: none;
     cursor: pointer;
-    color: var(--color-text);
     z-index: 9999;
+    border-radius: 4px;
+    transition: all 0.3s;
 
-    &.displayed {
-        color: var(--color-text);
-        border-radius: 4px;
-        /*color: rgb(255 255 255 / 90%);*/
-    }
-
-    /*&.focused,*/
     &:hover {
-        /*olor: rgb(255 255 255 / 90%);*/
-        color: var(--color-accent);
+        background-color: var(--color-accent);
     }
+}
+
+.media__btn:hover {
+    background-color: var(--color-accent);
+    border-radius: 4px;
 }
 
 .workspace__selector {
@@ -168,4 +168,16 @@ body,
 
 .up-checker__label--online {
     background-color: var(--color-accent);
+}
+
+.media {
+    display: flex;
+}
+
+.keyboard {
+    margin-right: 10px;
+}
+
+.keyboard svg {
+    height: 12px;
 }

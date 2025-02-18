@@ -1,30 +1,33 @@
-import { useState, useEffect } from 'react'
-import { createRoot } from 'react-dom/client'
-import { createProviderGroup } from 'zebar'
-import './reset.css'
-import './main.css'
-import UpChecker from './components/UpChecker/UpChecker'
-import Workspaces from './components/Workspaces/Workspaces'
+import { useState, useEffect } from "react"
+import { createRoot } from "react-dom/client"
+import { createProviderGroup } from "zebar"
+import "./reset.css"
+import "./main.css"
+import UpChecker from "./components/UpChecker/UpChecker"
+import Workspaces from "./components/Workspaces/Workspaces"
+import Media from "./components/Media/Media"
+import * as flags from "country-flag-icons/string/3x2"
 
 const providers = createProviderGroup({
-    network: { type: 'network' },
-    glazewm: { type: 'glazewm' },
-    cpu: { type: 'cpu' },
-    keyboard: { type: 'keyboard' },
-    date: { type: 'date', formatting: 'EEE d MMM HH:MM' },
-    //date: { type: 'date', formatting: 'EEE d MMM t' },
-    battery: { type: 'battery' },
-    memory: { type: 'memory' },
+    // network: { type: 'network' },
+    glazewm: { type: "glazewm" },
+    media: { type: "media" },
+    cpu: { type: "cpu" },
+    keyboard: { type: "keyboard" },
+    date: { type: "date", formatting: "EEE d MMM HH:MM" },
+    battery: { type: "battery" },
+    memory: { type: "memory" },
+    host: { type: "host" },
 })
 
-createRoot(document.getElementById('root')).render(<App />)
+createRoot(document.getElementById("root")).render(<App />)
 
 function App() {
     const [output, setOutput] = useState(providers.outputMap)
     const checkUpTime = [
         {
-            url: 'https://ktkv.dev',
-            name: 'wntrmt',
+            url: "https://ktkv.dev",
+            name: "wntrmt",
         },
     ]
 
@@ -35,9 +38,9 @@ function App() {
     // Get icon to show for current network status.
     function getNetworkIcon(networkOutput) {
         switch (networkOutput.defaultInterface?.type) {
-            case 'ethernet':
+            case "ethernet":
                 return <i className="nf nf-md-ethernet_cable"></i>
-            case 'wifi':
+            case "wifi":
                 if (networkOutput.defaultGateway?.signalStrength >= 80) {
                     return <i className="nf nf-md-wifi_strength_4"></i>
                 } else if (networkOutput.defaultGateway?.signalStrength >= 65) {
@@ -70,12 +73,10 @@ function App() {
     return (
         <div className="app">
             <div className="left">
-                {output.glazewm && (
-                    <Workspaces {...output.glazewm} />
-                )}
+                {output.glazewm && <Workspaces {...output.glazewm} />}
             </div>
 
-            <div className="center">{output.date?.formatted}</div>
+            {output.media && output.glazewm && output.host && <Media {...output} />}
 
             <div className="right">
                 {output.glazewm && (
@@ -86,20 +87,26 @@ function App() {
                                 key={bindingMode.name}
                                 onClick={() =>
                                     output.glazewm.runCommand(
-                                        `wm-disable-binding-mode --name ${bindingMode.name}`,
+                                        `wm-disable-binding-mode --name ${bindingMode.name}`
                                     )
-                                }>
+                                }
+                            >
                                 {bindingMode.displayName ?? bindingMode.name}
                             </button>
                         ))}
 
                         <button
-                            className={`tiling-direction nf ${output.glazewm.tilingDirection === 'horizontal' ? 'nf-md-swap_horizontal' : 'nf-md-swap_vertical'}`}
+                            className={`tiling-direction nf ${
+                                output.glazewm.tilingDirection === "horizontal"
+                                    ? "nf-md-swap_horizontal"
+                                    : "nf-md-swap_vertical"
+                            }`}
                             onClick={() =>
                                 output.glazewm.runCommand(
-                                    'toggle-tiling-direction',
+                                    "toggle-tiling-direction"
                                 )
-                            }></button>
+                            }
+                        ></button>
                     </>
                 )}
 
@@ -127,8 +134,9 @@ function App() {
                         {/* Change the text color if the CPU usage is high. */}
                         <span
                             className={
-                                output.cpu.usage > 85 ? 'high-usage' : ''
-                            }>
+                                output.cpu.usage > 85 ? "high-usage" : ""
+                            }
+                        >
                             {Math.round(output.cpu.usage)}%
                         </span>
                     </div>
@@ -146,10 +154,15 @@ function App() {
                 )}
 
                 {output.keyboard && (
-                    <div className="keyboard">
-                        {output.keyboard.layout.slice(0, 5)}
-                    </div>
+                    <div
+                        dangerouslySetInnerHTML={{
+                            __html: flags[output.keyboard.layout.slice(3, 5)],
+                        }}
+                        className="keyboard"
+                    ></div>
                 )}
+
+                {output.date && <div>{output.date.formatted}</div>}
             </div>
         </div>
     )

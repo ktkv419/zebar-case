@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 
-const Workspaces = ({ currentWorkspaces }) => {
+const Workspaces = ({ currentWorkspaces, runCommand }) => {
     const [workspaces, setWorkspaces] = useState()
     const [currentWorkspace, setCurrentWorkspace] = useState()
     const selector = useRef(null)
@@ -30,7 +30,9 @@ const Workspaces = ({ currentWorkspaces }) => {
 
     useEffect(() => {
         if (selector.current && size?.width) {
-            selector.current.style.left = `${size.offset.left - size.width / 2}px`
+            selector.current.style.left = `${
+                size.offset.left - size.width / 2
+            }px`
             selector.current.style.width = `${size.width}px`
             selector.current.style.height = `${size.height}px`
         }
@@ -45,7 +47,7 @@ const Workspaces = ({ currentWorkspaces }) => {
                         workspace.isDisplayed && "displayed"
                     }`}
                     onClick={() =>
-                        output.glazewm.runCommand(
+                        runCommand(
                             `focus --workspace ${workspace.name}`
                         )
                     }
