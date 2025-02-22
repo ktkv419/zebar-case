@@ -9,18 +9,29 @@
     --color-background: #1a1b26;
     --color-text: #c0caf5;
     --color-error: #ff757f;
+    --color-blue0: rgb(61, 89, 161);
+    --color-blue: rgb(122, 162, 247);
+    --color-cyan: rgb(125, 207, 255);
+    --color-magenta: rgb(187, 154, 247);
+    --color-orange: rgb(255, 158, 100);
+    --color-yellow: rgb(224, 175, 104);
+    --color-green: rgb(158, 206, 106);
+    --color-teal: rgb(26, 188, 156);
+    --color-red: rgb(255, 117, 127);
+    --color-red1: rgb(219, 75, 75);
+    --color-fg: rgb(192, 202, 245);
+    --color-bg: rgb(26, 27, 38);
 }
 
 i {
-    color: var(--color-accent);
-    margin-right: 7px;
+    /* margin-right: 7px; */
 }
 
 body,
 button {
     color: var(--color-text);
     font-family: Iosevka Nerd Font, monospace;
-    font-size: 12px;
+    font-size: 14px;
     overflow: hidden;
 }
 
@@ -47,10 +58,9 @@ body,
 .right {
     display: flex;
     height: 25px;
-    padding: 0 5px;
     align-items: center;
     background-color: var(--color-background);
-    border-radius: 6px;
+    border-radius: 4px;
 }
 
 .left {
@@ -64,6 +74,7 @@ body,
 .right {
     justify-self: end;
     grid-column: 3/4;
+    padding-right: 8px;
 }
 
 .logo,
@@ -91,21 +102,26 @@ body,
 }
 
 .workspace,
-.media__btn {
-    padding: 4px 6px;
+.btn {
+    padding: 0px 8px;
+    height: 100%;
     background: none;
     border: none;
     cursor: pointer;
     z-index: 9999;
     border-radius: 4px;
     transition: all 0.3s;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     &:hover {
         background-color: var(--color-accent);
     }
 }
 
-.media__btn:hover {
+.btn:hover {
     background-color: var(--color-accent);
     border-radius: 4px;
 }
@@ -116,13 +132,12 @@ body,
     transform: translateX(50%);
     background-color: var(--color-accent);
     border-radius: 4px;
+    height: 25px;
 }
 
 .binding-mode,
 .tiling-direction {
     background: #00000000;
-    color: var(--color-accent);
-    border-radius: 2px;
     line-height: 1;
     padding: 4px 8px;
     border: 0;
@@ -170,8 +185,9 @@ body,
     background-color: var(--color-accent);
 }
 
-.media {
+.media__btn-box {
     display: flex;
+    height: 100%;
 }
 
 .keyboard {
@@ -179,5 +195,34 @@ body,
 }
 
 .keyboard svg {
-    height: 12px;
+    height: 14px;
+}
+
+.center > span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.left__icon {
+    padding-left: 8px;
+}
+
+[class^="icon--"],
+[class*=" icon--"] {
+    scale: 1.2;
+    margin-right: 2ch;
+    color: var(--color-accent)
+}
+
+.icon--start {
+    /* color: var(--color-red); */
+}
+
+.icon--tiling {
+    /* color: var(--color-yellow); */
+}
+
+.icon--memory {
+    /* color: var(--color-green); */
 }

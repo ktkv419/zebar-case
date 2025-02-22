@@ -14,7 +14,7 @@ const providers = createProviderGroup({
     media: { type: "media" },
     cpu: { type: "cpu" },
     keyboard: { type: "keyboard" },
-    date: { type: "date", formatting: "EEE d MMM HH:MM" },
+    date: { type: "date", formatting: "EEE d MMM HH:mm" },
     battery: { type: "battery" },
     memory: { type: "memory" },
     host: { type: "host" },
@@ -60,23 +60,26 @@ function App() {
     // Get icon to show for how much of the battery is charged.
     function getBatteryIcon(batteryOutput) {
         if (batteryOutput.chargePercent > 90)
-            return <i className="nf nf-fa-battery_4"></i>
+            return <span className="icon icon--battery"></span>
         if (batteryOutput.chargePercent > 70)
-            return <i className="nf nf-fa-battery_3"></i>
+            return <span className="icon icon--battery"></span>
         if (batteryOutput.chargePercent > 40)
-            return <i className="nf nf-fa-battery_2"></i>
+            return <span className="icon icon--battery"></span>
         if (batteryOutput.chargePercent > 20)
-            return <i className="nf nf-fa-battery_1"></i>
-        return <i className="nf nf-fa-battery_0"></i>
+            return <span className="icon icon--battery"></span>
+        return <span className="icon icon--battery"></span>
     }
 
     return (
         <div className="app">
             <div className="left">
+                <div className="left__icon icon--start">󱇙</div>
                 {output.glazewm && <Workspaces {...output.glazewm} />}
             </div>
 
-            {output.media && output.glazewm && output.host && <Media {...output} />}
+            {output.media && output.glazewm && output.host && (
+                <Media {...output} />
+            )}
 
             <div className="right">
                 {output.glazewm && (
@@ -96,17 +99,17 @@ function App() {
                         ))}
 
                         <button
-                            className={`tiling-direction nf ${
-                                output.glazewm.tilingDirection === "horizontal"
-                                    ? "nf-md-swap_horizontal"
-                                    : "nf-md-swap_vertical"
-                            }`}
+                            className={`tiling-direction icon--tiling`}
                             onClick={() =>
                                 output.glazewm.runCommand(
                                     "toggle-tiling-direction"
                                 )
                             }
-                        ></button>
+                        >
+                            {output.glazewm.tilingDirection === "horizontal"
+                                ? "󰓡"
+                                : "󰓢"}
+                        </button>
                     </>
                 )}
 
@@ -122,14 +125,14 @@ function App() {
 
                 {output.memory && (
                     <div className="memory">
-                        <i className="nf nf-fae-chip"></i>
+                        <span className="icon icon--memory"></span>
                         {Math.round(output.memory.usage)}%
                     </div>
                 )}
 
                 {output.cpu && (
                     <div className="cpu">
-                        <i className="nf nf-oct-cpu"></i>
+                        <span className="icon icon--cpu"></span>
 
                         {/* Change the text color if the CPU usage is high. */}
                         <span
@@ -146,7 +149,9 @@ function App() {
                     <div className="battery">
                         {/* Show icon for whether battery is charging. */}
                         {output.battery.isCharging && (
-                            <i className="nf nf-md-power_plug charging-icon"></i>
+                            <span className="icon icon--battery-charging">
+                                󰚥
+                            </span>
                         )}
                         {getBatteryIcon(output.battery)}
                         {Math.round(output.battery.chargePercent)}%
