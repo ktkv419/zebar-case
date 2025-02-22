@@ -5,6 +5,7 @@ const Workspaces = ({ allWorkspaces, runCommand }) => {
     const [currentWorkspace, setCurrentWorkspace] = useState()
     const selectorRef = useRef(null)
     const [size, setSize] = useState()
+    const [mainRes, setMainRes] = useState(allWorkspaces[0].width)
 
     useEffect(() => {
         if (selectorRef.current) {
@@ -16,6 +17,7 @@ const Workspaces = ({ allWorkspaces, runCommand }) => {
         const _currentWorkspaces = [...document.querySelectorAll(".workspace")]
         setWorkspaces(_currentWorkspaces)
         setCurrentWorkspace(allWorkspaces.findIndex((tab) => tab.hasFocus))
+        setMainRes(allWorkspaces[0].width)
     }, [allWorkspaces])
 
     useEffect(() => {
@@ -39,11 +41,11 @@ const Workspaces = ({ allWorkspaces, runCommand }) => {
     return (
         <div className="workspaces">
             <div className="workspace__selector" ref={selectorRef}></div>
-            {allWorkspaces.map((workspace) => (
+            {allWorkspaces.sort((a,b) => a.name - b.name).map((workspace) => (
                 <button
                     className={`workspace ${workspace.hasFocus && "focused"} ${
                         workspace.isDisplayed && "displayed"
-                    }`}
+                    } ${workspace.width !== mainRes && "workspace--secondary"}`}
                     onClick={() =>
                         runCommand(`focus --workspace ${workspace.name}`)
                     }
