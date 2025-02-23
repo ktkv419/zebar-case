@@ -118,7 +118,7 @@ body,
     align-items: center;
 
     &:hover {
-        background-color: var(--color-accent);
+        color: var(--color-blue);
     }
 }
 
