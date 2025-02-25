@@ -29,13 +29,12 @@ const UpChecker = ({ name, url, interval = 300000 }) => {
     }, [])
 
     const renderStatus = () => {
-        if (isUp) return " up-checker__label--online"
-        if (!isUp) return " up-checker__label--offline"
+        if (!isUp) return "icon--offline"
     }
 
     return (
         <div className="up-checker">
-            <div className={`up-checker__label${renderStatus()}`}></div>
+            <div className={`icon ${renderStatus()}`}></div>
             <span className="up-checker__name">{name}</span>
         </div>
     )

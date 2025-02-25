@@ -60,20 +60,20 @@ function App() {
     // Get icon to show for how much of the battery is charged.
     function getBatteryIcon(batteryOutput) {
         if (batteryOutput.chargePercent > 90)
-            return <span className="icon icon--battery"></span>
+            return <span className="icon"></span>
         if (batteryOutput.chargePercent > 70)
-            return <span className="icon icon--battery"></span>
+            return <span className="icon"></span>
         if (batteryOutput.chargePercent > 40)
-            return <span className="icon icon--battery"></span>
+            return <span className="icon"></span>
         if (batteryOutput.chargePercent > 20)
-            return <span className="icon icon--battery"></span>
-        return <span className="icon icon--battery"></span>
+            return <span className="icon"></span>
+        return <span className="icon"></span>
     }
 
     return (
         <div className="app">
             <div className="left">
-                <div className="left__icon icon--start">󱇙</div>
+                <div className="icon">󱇙</div>
                 {output.glazewm && <Workspaces {...output.glazewm} />}
             </div>
 
@@ -125,14 +125,14 @@ function App() {
 
                 {output.memory && (
                     <div className="memory">
-                        <span className="icon icon--memory"></span>
+                        <span className="icon"></span>
                         {Math.round(output.memory.usage)}%
                     </div>
                 )}
 
                 {output.cpu && (
                     <div className="cpu">
-                        <span className="icon icon--cpu"></span>
+                        <span className="icon"></span>
 
                         {/* Change the text color if the CPU usage is high. */}
                         <span
@@ -149,7 +149,7 @@ function App() {
                     <div className="battery">
                         {/* Show icon for whether battery is charging. */}
                         {output.battery.isCharging && (
-                            <span className="icon icon--battery-charging">
+                            <span className="icon">
                                 󰚥
                             </span>
                         )}

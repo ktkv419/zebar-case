@@ -2,31 +2,43 @@
  * Import the Nerdfonts icon font.
  * Ref https://www.nerdfonts.com/cheat-sheet for a cheatsheet of available Nerdfonts icons.
  */
-@import "https://www.nerdfonts.com/assets/css/webfont.css";
+@import 'https://www.nerdfonts.com/assets/css/webfont.css';
 
+/**
+ * TokyoNight colorscheme
+ * Ref TBD
+ */
 :root {
     --color-accent: #3d59a1;
     --color-background: #1a1b26;
     --color-text: #c0caf5;
-    --color-error: #ff757f;
-    --color-blue0: rgb(61, 89, 161);
     --color-blue: rgb(122, 162, 247);
-    --color-cyan: rgb(125, 207, 255);
     --color-magenta: rgb(187, 154, 247);
     --color-orange: rgb(255, 158, 100);
     --color-yellow: rgb(224, 175, 104);
     --color-green: rgb(158, 206, 106);
     --color-teal: rgb(26, 188, 156);
     --color-red: rgb(255, 117, 127);
-    --color-red1: rgb(219, 75, 75);
-    --color-fg: rgb(192, 202, 245);
-    --color-bg: rgb(26, 27, 38);
-    --color-background2: #00000000
+    --color-background2: #00000000;
 }
 
-i {
-    /* margin-right: 7px; */
-}
+/**
+ * Kanagawa colorscheme
+ * Ref TBD
+ */
+/*:root {*/
+/*    --color-accent: #2d4f67;*/
+/*    --color-background: #1f1f28;*/
+/*    --color-text: #dcd7ba;*/
+/*    --color-blue: #7e9cd8;*/
+/*    --color-magenta: #957fb8;*/
+/*    --color-orange: #ffa066;*/
+/*    --color-yellow: #c0a36e;*/
+/*    --color-green: #76946a;*/
+/*    --color-teal: #6a9589;*/
+/*    --color-red: #c34043;*/
+/*    --color-background2: #00000000;*/
+/*}*/
 
 body,
 button {
@@ -121,12 +133,12 @@ body,
     align-items: center;
 
     &:hover {
-        color: var(--color-blue);
+        color: var(yellow);
     }
 }
 
 .btn:hover {
-    background-color: var(--color-accent);
+    background-color: var(--color-magenta);
     border-radius: 4px;
 }
 
@@ -134,9 +146,13 @@ body,
     position: absolute;
     transition: all 0.3s;
     transform: translateX(50%);
-    background-color: var(--color-accent);
+    background-color: var(--color-yellow);
     border-radius: 4px;
     height: 25px;
+}
+
+.workspace.focused {
+    color: var(--color-background);
 }
 
 .workspace--secondary {
@@ -173,24 +189,14 @@ body,
 
 .up-checker {
     display: flex;
-    gap: 5px;
     justify-content: center;
     align-items: center;
 }
 
-.up-checker__label {
+.up-checker .icon {
     height: 6px;
     width: 6px;
     border-radius: 100%;
-    background-color: var(--color-background);
-}
-
-.up-checker__label--offline {
-    background-color: var(--color-error);
-}
-
-.up-checker__label--online {
-    background-color: var(--color-accent);
 }
 
 .media__btn-box {
@@ -212,25 +218,42 @@ body,
     text-overflow: ellipsis;
 }
 
-.left__icon {
-    padding-left: 8px;
-}
-
-[class^="icon--"],
-[class*=" icon--"] {
+.icon {
     scale: 1.2;
     margin-right: 2ch;
     color: var(--color-accent);
 }
 
-.icon--start {
-    /* color: var(--color-red); */
+.left .icon {
+    color: var(--color-orange);
+    padding-left: 8px;
 }
 
-.icon--tiling {
-    /* color: var(--color-yellow); */
+.tiling-direction .icon {
+    color: var(--color-green);
 }
 
-.icon--memory {
-    /* color: var(--color-green); */
+.up-checker .icon {
+    background-color: var(--color-blue);
+    margin-right: 1ch;
+}
+
+.up-checker .icon--offline {
+    background-color: var(--color-red);
+}
+
+.memory .icon {
+    color: var(--color-magenta);
+}
+
+.cpu .icon {
+    color: var(--color-teal);
+}
+
+.battery .icon {
+    color: var(--color-blue);
+}
+
+.clock .icon {
+    color: var(--color-blue);
 }
