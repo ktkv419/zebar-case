@@ -30,7 +30,9 @@ i {
 body,
 button {
     color: var(--color-text);
-    font-family: Iosevka Nerd Font, monospace;
+    font-family:
+        Iosevka Nerd Font,
+        monospace;
     font-size: 14px;
     overflow: hidden;
 }

@@ -1,11 +1,10 @@
-import React, { useEffect } from "react"
+import React, { act, useEffect } from "react"
 import { useState } from "react"
 
 const Media = ({ media, glazewm, host }) => {
     const {
         allSessions,
         pause,
-        currentSession,
         next,
         previous,
         play,
@@ -13,19 +12,17 @@ const Media = ({ media, glazewm, host }) => {
         // position,
         // endTime,
     } = media
-    const [isPlaying, setIsPlaying] = useState(false)
     const [focusedWindow, setFocusedWindow] = useState()
+    const [currentSession, setCurrentSession] = useState(undefined)
 
     function getMedia() {
         if (currentSession) {
-            return `󰝚 ${[currentSession.artist, currentSession.title].join(
-                " - "
-            )}`
+            return `󰝚 ${[currentSession.artist, currentSession.title].join(" - ")}`
         }
     }
 
     const handleStop = () => {
-        setIsPlaying(false)
+        setCurrentSession(undefined)
         pause()
     }
 
@@ -34,16 +31,11 @@ const Media = ({ media, glazewm, host }) => {
     }, [glazewm])
 
     useEffect(() => {
-        console.log(allSessions)
-
-        if (allSessions.some((session) => session.isPlaying)) {
-            setIsPlaying(true)
-        } else {
-            setIsPlaying(false)
-        }
+        const activeSession = allSessions.find((session) => session.isPlaying)
+        setCurrentSession(activeSession)
     }, [allSessions])
 
-    return isPlaying && allSessions?.length > 0 ? (
+    return currentSession && allSessions?.length > 0 ? (
         <div className="center">
             <div className="media__btn-box">
                 <span className="btn" onClick={async () => previous()}>
@@ -52,6 +44,7 @@ const Media = ({ media, glazewm, host }) => {
                 <span onClick={async () => handleStop()} className="btn">
                     {getMedia()}
                 </span>
+
                 <span className="btn" onClick={async () => next()}>
                     󰒭
                 </span>

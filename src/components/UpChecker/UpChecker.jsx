@@ -1,5 +1,5 @@
-import { useEffect } from 'react'
-import { useState } from 'react'
+import { useEffect } from "react"
+import { useState } from "react"
 
 const UpChecker = ({ name, url, interval = 300000 }) => {
     const [isUp, setIsUp] = useState(true)
@@ -8,9 +8,9 @@ const UpChecker = ({ name, url, interval = 300000 }) => {
         const check = async () => {
             try {
                 await fetch(url, {
-                    method: 'HEAD',
-                    mode: 'no-cors',
-                    cache: 'no-store',
+                    method: "HEAD",
+                    mode: "no-cors",
+                    cache: "no-store",
                 })
                 setIsUp(true)
             } catch {
@@ -29,8 +29,8 @@ const UpChecker = ({ name, url, interval = 300000 }) => {
     }, [])
 
     const renderStatus = () => {
-        if (isUp) return ' up-checker__label--online'
-        if (!isUp) return ' up-checker__label--offline'
+        if (isUp) return " up-checker__label--online"
+        if (!isUp) return " up-checker__label--offline"
     }
 
     return (

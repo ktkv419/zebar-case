@@ -41,19 +41,21 @@ const Workspaces = ({ allWorkspaces, runCommand }) => {
     return (
         <div className="workspaces">
             <div className="workspace__selector" ref={selectorRef}></div>
-            {allWorkspaces.sort((a,b) => a.name - b.name).map((workspace) => (
-                <button
-                    className={`workspace ${workspace.hasFocus && "focused"} ${
-                        workspace.isDisplayed && "displayed"
-                    } ${workspace.width !== mainRes && "workspace--secondary"}`}
-                    onClick={() =>
-                        runCommand(`focus --workspace ${workspace.name}`)
-                    }
-                    key={workspace.name}
-                >
-                    {workspace.displayName ?? workspace.name}
-                </button>
-            ))}
+            {allWorkspaces
+                .sort((a, b) => a.name - b.name)
+                .map((workspace) => (
+                    <button
+                        className={`workspace ${workspace.hasFocus && "focused"} ${
+                            workspace.isDisplayed && "displayed"
+                        } ${workspace.width !== mainRes && "workspace--secondary"}`}
+                        onClick={() =>
+                            runCommand(`focus --workspace ${workspace.name}`)
+                        }
+                        key={workspace.name}
+                    >
+                        {workspace.displayName ?? workspace.name}
+                    </button>
+                ))}
         </div>
     )
 }

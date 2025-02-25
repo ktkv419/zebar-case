@@ -90,7 +90,7 @@ function App() {
                                 key={bindingMode.name}
                                 onClick={() =>
                                     output.glazewm.runCommand(
-                                        `wm-disable-binding-mode --name ${bindingMode.name}`
+                                        `wm-disable-binding-mode --name ${bindingMode.name}`,
                                     )
                                 }
                             >
@@ -102,7 +102,7 @@ function App() {
                             className={`tiling-direction icon--tiling`}
                             onClick={() =>
                                 output.glazewm.runCommand(
-                                    "toggle-tiling-direction"
+                                    "toggle-tiling-direction",
                                 )
                             }
                         >
