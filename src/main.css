@@ -21,6 +21,7 @@
     --color-red1: rgb(219, 75, 75);
     --color-fg: rgb(192, 202, 245);
     --color-bg: rgb(26, 27, 38);
+    --color-background2: #00000000
 }
 
 i {
@@ -44,7 +45,7 @@ body,
 }
 
 #root {
-    background: #00000000;
+    background: var(--color-background2);
 }
 
 .app {
@@ -139,12 +140,12 @@ body,
 }
 
 .workspace--secondary {
-    color: #c0caf580;
+    color: var(--color-text);
 }
 
 .binding-mode,
 .tiling-direction {
-    background: #00000000;
+    background: var(--color-background2);
     line-height: 1;
     padding: 4px 8px;
     border: 0;
@@ -156,7 +157,7 @@ body,
 }
 
 .cpu .high-usage {
-    color: #900029;
+    color: var(--color-red);
 }
 
 .battery {
