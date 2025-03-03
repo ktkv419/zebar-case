@@ -140,6 +140,7 @@ body,
 .btn:hover {
     background-color: var(--color-magenta);
     border-radius: 4px;
+    color: var(--color-background);
 }
 
 .workspace__selector {
