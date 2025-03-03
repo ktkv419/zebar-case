@@ -2,7 +2,7 @@
  * Import the Nerdfonts icon font.
  * Ref https://www.nerdfonts.com/cheat-sheet for a cheatsheet of available Nerdfonts icons.
  */
-@import 'https://www.nerdfonts.com/assets/css/webfont.css';
+@import "https://www.nerdfonts.com/assets/css/webfont.css";
 
 /**
  * TokyoNight colorscheme
@@ -82,10 +82,6 @@ body,
     justify-self: start;
 }
 
-.center {
-    justify-self: center;
-}
-
 .right {
     justify-self: end;
     grid-column: 3/4;
@@ -103,10 +99,6 @@ body,
     display: flex;
 }
 
-.center.title {
-    text-overflow: ellipsis;
-}
-
 .tiling-direction {
     margin-right: 10px;
 }
@@ -117,7 +109,6 @@ body,
     height: 100%;
 }
 
-.workspace,
 .btn {
     padding: 0px 8px;
     height: 100%;
@@ -133,14 +124,9 @@ body,
     align-items: center;
 
     &:hover {
-        color: var(yellow);
+        color: var(--color-background) !important;
+        background-color: var(--color-accent);
     }
-}
-
-.btn:hover {
-    background-color: var(--color-magenta);
-    border-radius: 4px;
-    color: var(--color-background);
 }
 
 .workspace__selector {
@@ -200,11 +186,6 @@ body,
     border-radius: 100%;
 }
 
-.media__btn-box {
-    display: flex;
-    height: 100%;
-}
-
 .keyboard {
     margin-right: 10px;
 }
@@ -213,10 +194,38 @@ body,
     height: 14px;
 }
 
-.center > span {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+.center {
+    display: flex;
+    justify-self: center;
+    
+    &.media .btn {
+        &:first-child,
+        &:last-child {
+            color: var(--color-magenta);
+        }
+    }
+
+    & .btn {
+        display: flex;
+        gap: 1ch;
+
+        &.title {
+            text-overflow: ellipsis;
+        }
+
+        & span {
+            color: var(--color-magenta);
+            transition: all 0.3s;
+        }
+
+        &:hover {
+            background-color: var(--color-magenta);
+
+            & span {
+                color: var(--color-background);
+            }
+        }
+    }
 }
 
 .icon {
