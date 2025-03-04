@@ -27,12 +27,12 @@ const Media = ({ media, glazewm, host }) => {
 
     return currentSession && currentSession.isPlaying ? (
         <div className="center media">
-            <Button onClick={previous}>󰒮</Button>
+            <Button onClick={() => previous()}>󰒮</Button>
             <Button onClick={() => pause()}>
                 <span>󰝚</span>
                 {getMedia()}
             </Button>
-            <Button onClick={next}>󰒭</Button>
+            <Button onClick={() => next()}>󰒭</Button>
         </div>
     ) : (
         <div className="center title">
