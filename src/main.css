@@ -80,6 +80,23 @@ body,
 
 .left {
     justify-self: start;
+
+    .icon {
+        color: var(--color-orange);
+        padding-left: 8px;
+    }
+
+    .btn {
+        &:hover {
+            color: var(--color-yellow) !important;
+            background-color: transparent;
+        }
+
+        &.displayed {
+            color: var(--color-background);
+            background-color: var(--color-yellow);
+        }
+    }
 }
 
 .right {
@@ -197,7 +214,7 @@ body,
 .center {
     display: flex;
     justify-self: center;
-    
+
     &.media .btn {
         &:first-child,
         &:last-child {
@@ -205,7 +222,7 @@ body,
         }
     }
 
-    & .btn {
+    .btn {
         display: flex;
         gap: 1ch;
 
@@ -232,11 +249,6 @@ body,
     scale: 1.2;
     margin-right: 2ch;
     color: var(--color-accent);
-}
-
-.left .icon {
-    color: var(--color-orange);
-    padding-left: 8px;
 }
 
 .tiling-direction .icon {
