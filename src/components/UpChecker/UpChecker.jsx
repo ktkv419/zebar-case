@@ -1,23 +1,27 @@
-import { useEffect } from "react"
+import { useCallback, useEffect } from "react"
 import { useState } from "react"
 
 const UpChecker = ({ name, url, interval = 300000 }) => {
     const [isUp, setIsUp] = useState(true)
+    const [isLoading, setIsLoading] = useState(false)
+
+    const check = useCallback(async () => {
+        setIsLoading(true)
+        try {
+            await fetch(url, {
+                method: "HEAD",
+                mode: "no-cors",
+                cache: "no-store",
+            })
+            setIsUp(true)
+        } catch {
+            setIsUp(false)
+        } finally {
+            setIsLoading(false)
+        }
+    }, [])
 
     useEffect(() => {
-        const check = async () => {
-            try {
-                await fetch(url, {
-                    method: "HEAD",
-                    mode: "no-cors",
-                    cache: "no-store",
-                })
-                setIsUp(true)
-            } catch {
-                setIsUp(false)
-            }
-        }
-
         check()
         const timer = setInterval(() => {
             check()
@@ -28,13 +32,11 @@ const UpChecker = ({ name, url, interval = 300000 }) => {
         }
     }, [])
 
-    const renderStatus = () => {
-        if (!isUp) return "icon--offline"
-    }
-
     return (
-        <div className="up-checker">
-            <div className={`icon ${renderStatus()}`}></div>
+        <div onClick={check} className="up-checker">
+            <div
+                className={`icon ${isLoading && "icon--loading"} ${!isUp && "icon--offline"}`}
+            ></div>
             <span className="up-checker__name">{name}</span>
         </div>
     )

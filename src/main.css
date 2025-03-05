@@ -163,7 +163,7 @@ body,
     color: var(--color-text);
     overflow: hidden;
     position: relative;
-    
+
     &::after {
         content: "";
         position: absolute;
@@ -204,16 +204,33 @@ body,
     top: 3px;
 }
 
+@keyframes upCheckerLoader {
+    0% {
+        background-color: var(--color-red);
+    }
+    50% {
+        background-color: var(--color-blue);
+    }
+    100% {
+        background-color: var(--color-red);
+    }
+}
+
 .up-checker {
     display: flex;
     justify-content: center;
     align-items: center;
-}
+    cursor: pointer;
 
-.up-checker .icon {
-    height: 6px;
-    width: 6px;
-    border-radius: 100%;
+    .icon {
+        height: 6px;
+        width: 6px;
+        border-radius: 100%;
+    }
+
+    .icon--loading {
+        animation: upCheckerLoader 1s infinite alternate ease-in-out;
+    }
 }
 
 .keyboard {
