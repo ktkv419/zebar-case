@@ -92,7 +92,7 @@ body,
             background-color: transparent;
         }
 
-        &.displayed {
+        &.focused {
             color: var(--color-background);
             background-color: var(--color-yellow);
         }
@@ -161,6 +161,19 @@ body,
 
 .workspace--secondary {
     color: var(--color-text);
+    overflow: hidden;
+    position: relative;
+    
+    &::after {
+        content: "";
+        position: absolute;
+        top: 2px;
+        right: 2px;
+        height: 5px;
+        width: 5px;
+        border-radius: 100%;
+        background-color: var(--color-yellow);
+    }
 }
 
 .binding-mode,

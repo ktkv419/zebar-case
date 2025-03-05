@@ -14,9 +14,11 @@ const Workspaces = ({ allWorkspaces, runCommand }) => {
                         onClick={() =>
                             runCommand(`focus --workspace ${workspace.name}`)
                         }
-                        className={`workspace ${workspace.hasFocus && "focused"} ${
+                        className={`workspace ${workspace.hasFocus && "focused"}
+                        ${
                             workspace.isDisplayed && "displayed"
-                        } ${workspace.width !== mainRes && "workspace--secondary"}`}
+                        }
+                        ${workspace.width !== mainRes && "workspace--secondary"}`}
                     >
                         {workspace.displayName ?? workspace.name}
                     </Button>
