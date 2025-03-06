@@ -37,7 +37,7 @@ const Media = ({ media, glazewm, host }) => {
     ) : (
         <div className="center title">
             <Button onClick={() => play()}>
-                {focusedWindow ? focusedWindow.processName : host.hostname}
+                {focusedWindow ? focusedWindow.title : host.hostname}
             </Button>
         </div>
     )
