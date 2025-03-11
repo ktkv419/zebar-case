@@ -112,6 +112,7 @@ body,
 .memory,
 .cpu,
 .up-checker,
+.awake,
 .battery {
     margin-right: 15px;
     display: flex;
@@ -289,6 +290,12 @@ body,
 .up-checker .icon {
     background-color: var(--color-blue);
     margin-right: 1ch;
+}
+
+.awake .icon {
+    margin-right: 1ch;
+    color: var(--color-orange);
+    cursor: pointer;
 }
 
 .up-checker .icon--offline {

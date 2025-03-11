@@ -7,6 +7,7 @@ import UpChecker from "./components/UpChecker/UpChecker"
 import Workspaces from "./components/Workspaces/Workspaces"
 import Media from "./components/Media/Media"
 import * as flags from "country-flag-icons/string/3x2"
+import Awake from "./components/Awake/Awake"
 
 const providers = createProviderGroup({
     // network: { type: 'network' },
@@ -123,6 +124,8 @@ function App() {
                 {checkUpTime.length > 0 &&
                     checkUpTime.map((machine) => <UpChecker {...machine} />)}
 
+                {output.glazewm && <Awake {...output.glazewm} />}
+
                 {output.memory && (
                     <div className="memory">
                         <span className="icon"></span>
@@ -149,9 +152,7 @@ function App() {
                     <div className="battery">
                         {/* Show icon for whether battery is charging. */}
                         {output.battery.isCharging && (
-                            <span className="icon">
-                                󰚥
-                            </span>
+                            <span className="icon">󰚥</span>
                         )}
                         {getBatteryIcon(output.battery)}
                         {Math.round(output.battery.chargePercent)}%
