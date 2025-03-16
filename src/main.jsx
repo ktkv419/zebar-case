@@ -7,7 +7,7 @@ import UpChecker from "./components/UpChecker/UpChecker"
 import Workspaces from "./components/Workspaces/Workspaces"
 import Media from "./components/Media/Media"
 import * as flags from "country-flag-icons/string/3x2"
-import Awake from "./components/Awake/Awake"
+import Button from "./components/Button/Button"
 
 const providers = createProviderGroup({
     // network: { type: 'network' },
@@ -26,10 +26,6 @@ createRoot(document.getElementById("root")).render(<App />)
 function App() {
     const [output, setOutput] = useState(providers.outputMap)
     const checkUpTime = [
-        {
-            url: "https://ktkv.dev",
-            name: "wntrmt",
-        },
     ]
 
     useEffect(() => {
@@ -74,7 +70,21 @@ function App() {
     return (
         <div className="app">
             <div className="left">
-                <div className="icon">󱇙</div>
+                {output.glazewm && (
+                    <div className="tiling-direction">
+                        <Button
+                            onClick={() =>
+                                output.glazewm.runCommand(
+                                    "toggle-tiling-direction",
+                                )
+                            }
+                        >
+                            {output.glazewm.tilingDirection === "horizontal"
+                                ? "󰓡"
+                                : "󰓢"}
+                        </Button>
+                    </div>
+                )}
                 {output.glazewm && <Workspaces {...output.glazewm} />}
             </div>
 
@@ -98,19 +108,6 @@ function App() {
                                 {bindingMode.displayName ?? bindingMode.name}
                             </button>
                         ))}
-
-                        <button
-                            className={`tiling-direction icon--tiling`}
-                            onClick={() =>
-                                output.glazewm.runCommand(
-                                    "toggle-tiling-direction",
-                                )
-                            }
-                        >
-                            {output.glazewm.tilingDirection === "horizontal"
-                                ? "󰓡"
-                                : "󰓢"}
-                        </button>
                     </>
                 )}
 
@@ -124,7 +121,7 @@ function App() {
                 {checkUpTime.length > 0 &&
                     checkUpTime.map((machine) => <UpChecker {...machine} />)}
 
-                {output.glazewm && <Awake {...output.glazewm} />}
+                {/* {output.glazewm && <Awake {...output.glazewm} />} */}
 
                 {output.memory && (
                     <div className="memory">
