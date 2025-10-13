@@ -10,8 +10,9 @@
  */
 :root {
     --color-accent: #3d59a1;
-    --color-background: #1a1b26;
-    --color-text: #c0caf5;
+    --color-background: #1a1b26df;
+    --color-text: #fff;
+    /* --color-text: #c0caf5; */
     --color-blue: rgb(122, 162, 247);
     --color-magenta: rgb(187, 154, 247);
     --color-orange: rgb(255, 158, 100);
@@ -20,6 +21,10 @@
     --color-teal: rgb(26, 188, 156);
     --color-red: rgb(255, 117, 127);
     --color-background2: #00000000;
+    --gap: 2ch;
+    --font-size: 15px;
+    --font-size-2: calc(var(--font-size) - 3px);
+    --border-radius: 3px;
 }
 
 /**
@@ -43,10 +48,10 @@
 body,
 button {
     color: var(--color-text);
-    font-family:
-        Iosevka Nerd Font,
-        monospace;
-    font-size: 14px;
+    font-family: "SF Pro Display", "Iosevka Nerd Font", monospace;
+    font-size: var(--font-size);
+    line-height: 1;
+    font-weight: 400;
     overflow: hidden;
 }
 
@@ -66,56 +71,29 @@ body,
     grid-template-columns: 1fr auto 1fr;
     align-items: end;
     height: 100%;
-    padding: 0 5px;
+    padding: 5px 10px 0;
 }
 
 .left,
 .center,
 .right {
     display: flex;
-    height: 25px;
+    height: 100%;
     align-items: center;
+    /* background-color: #ff0088; */
     background-color: var(--color-background);
-    border-radius: 4px;
+    border-radius: calc(infinity * 1px);
+    padding: 0 16px;
 }
 
 .left {
     justify-self: start;
-
-    .icon {
-        color: var(--color-orange);
-        padding-left: 8px;
-    }
-
-    .btn {
-        &:hover {
-            color: var(--color-blue) !important;
-            background-color: transparent;
-        }
-
-        &.focused {
-            color: var(--color-background);
-            background-color: var(--color-blue);
-        }
-    }
 }
 
 .right {
     justify-self: end;
     grid-column: 3/4;
-    padding: 0 8px;
-}
-
-.logo,
-.binding-mode,
-.network,
-.memory,
-.cpu,
-.up-checker,
-.awake,
-.battery {
-    margin-right: 15px;
-    display: flex;
+    gap: var(--gap);
 }
 
 .tiling-direction .btn {
@@ -127,6 +105,31 @@ body,
     display: flex;
     align-items: center;
     height: 100%;
+    gap: calc(var(--gap) / 4);
+    font-size: var(--font-size-2);
+}
+
+.workspace {
+    cursor: pointer;
+    aspect-ratio: 1;
+    height: 65%;
+    border: solid 2px var(--color-text);
+    border-radius: var(--border-radius);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.workspace--active {
+    color: var(--color-background);
+    font-weight: 600;
+    background-color: var(--color-text);
+}
+
+.workspace__divider {
+    width: 2px;
+    height: 40%;
+    background-color: var(--color-text);
 }
 
 .btn {
@@ -136,7 +139,7 @@ body,
     border: none;
     cursor: pointer;
     z-index: 9999;
-    border-radius: 4px;
+    border-radius: calc(infinity * 1px);
     transition: all 0.3s;
 
     display: flex;
@@ -223,11 +226,14 @@ body,
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    gap: calc(var(--gap) / 2);
 
     .icon {
         height: 6px;
         width: 6px;
         border-radius: 100%;
+        background-color: var(--color-text);
+        margin-right: unset;
     }
 
     .icon--loading {
@@ -279,12 +285,6 @@ body,
 
 .icon {
     scale: 1.2;
-    margin-right: 2ch;
-    color: var(--color-accent);
-}
-
-.up-checker .icon {
-    background-color: var(--color-blue);
     margin-right: 1ch;
 }
 
@@ -312,4 +312,38 @@ body,
 
 .clock .icon {
     color: var(--color-blue);
+}
+
+.menu {
+    display: flex;
+    gap: var(--gap);
+}
+
+.menu__name {
+    font-weight: 700;
+}
+
+.language {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--border-radius);
+    height: 60%;
+    aspect-ratio: 5.5 / 4;
+    font-weight: 600;
+    font-size: var(--font-size-2);
+    border: solid 2px var(--color-text);
+    background-color: var(--color-text);
+    color: var(--color-background);
+}
+
+.language--secondary {
+    background-color: unset;
+    color: var(--color-text);
+    font-weight: 400;
+}
+
+.time {
+    display: flex;
+    gap: calc(var(--gap) / 2);
 }

@@ -35,9 +35,9 @@ const UpChecker = ({ name, url, interval = 300000 }) => {
     return (
         <div onClick={check} className="up-checker">
             <div
-                className={`icon ${isLoading && "icon--loading"} ${!isUp && "icon--offline"}`}
+                className={`icon${isLoading ? " icon--loading" : ""}${!isUp ? " icon--offline" : ""}`}
             ></div>
-            <span className="up-checker__name">{name}</span>
+            {name && <span className="up-checker__name">{name}</span>}
         </div>
     )
 }
